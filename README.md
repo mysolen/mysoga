@@ -10,6 +10,10 @@
 
 # ~~破解二进制文件下载地址：[release](https://github.com/RManLuo/crack-soga-v2ray/releases)~~
 
+## HOW TO CRACK
+
+(How to crack a soga backend)[https://www.rman.top/2021/02/07/crack-soga/]
+
 # 使用教程 (relase已删除)
 
 ## 已知问题
