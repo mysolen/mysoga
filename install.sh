@@ -85,22 +85,29 @@ install_acme() {
 }
 
 install_soga() {
+    rm /usr/bin/soga -f
     cd /usr/local/
     if [[ -e /usr/local/soga/ ]]; then
         rm /usr/local/soga/ -rf
     fi
 
     if  [ $# == 0 ] ;then
-        last_version=$(curl -Ls "https://api.github.com/repos/RManLuo/crack-soga-v2ray/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version=$(curl -Ls "https://api.github.com/repos/mysolen/crack-soga-v2ray/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
             echo -e "${red}检测 soga 版本失败，可能是超出 Github API 限制，请稍后再试，或手动指定 soga 版本安装${plain}"
             exit 1
         fi
         echo -e "检测到 soga 最新版本：${last_version}，开始安装"
-        echo -e "正在安装..."
+        echo '127.0.0.1  soga.sprov.xyz' | tee -a /etc/hosts
+        echo '127.0.0.1  doc.sprov.xyz' | tee -a /etc/hosts
+        wget -N --no-check-certificate -O /usr/local/soga.tar.gz https://ora1.us.gdivps.com/soga.tar.gz
+        if [[ $? -ne 0 ]]; then
+            echo -e "${red}下载 soga 失败，请确保你的服务器能够下载 Github 的文件${plain}"
+            exit 1
+        fi
     else
         last_version=$1
-        url="https://github.com/RManLuo/crack-soga-v2ray/releases/download/${last_version}/soga-cracked-linux64.tar.gz"
+        url="https://github.com/mysolen/crack-soga-v2ray/releases/download/${last_version}/soga-cracked-linux64.tar.gz"
         echo -e "开始安装 soga v$1"
         wget -N --no-check-certificate -O /usr/local/soga.tar.gz ${url}
         if [[ $? -ne 0 ]]; then
