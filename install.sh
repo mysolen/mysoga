@@ -97,7 +97,7 @@ install_soga() {
         echo '127.0.0.1  soga.sprov.xyz' | tee -a /etc/hosts
         echo '127.0.0.1  doc.sprov.xyz' | tee -a /etc/hosts
         echo -e "请确保 soga.tar.gz 文件已上传到服务器根目录，否则将无法继续安装......"
-        mv /root/soga.tar.gz /usr/local/soga.tar.gz
+        
     else
         last_version=$1
         url="https://github.com/mysolen/crack-soga-v2ray/releases/download/${last_version}/soga-cracked-linux64.tar.gz"
